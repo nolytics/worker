@@ -25,3 +25,6 @@ export interface Metadata {
     browser: string;
     isMobile: boolean;
 };
+
+export const defaultBrowserUserAgent = 'none';
+export const defaultClientIP = 'none';
