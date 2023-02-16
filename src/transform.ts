@@ -4,7 +4,7 @@ import { pageNameQueryParameter, pagePathQueryParameter } from "./param";
 import { Client, defaultBrowserUserAgent, defaultClientIP, Metadata, Page } from "./schema";
 
 export function requestToPage(req: Request): Page {
-    const queryParams = new URLSearchParams(req.url);
+    const queryParams = new URL(req.url).searchParams;
 
     return <Page>{
         path: queryParams.get(pagePathQueryParameter),
