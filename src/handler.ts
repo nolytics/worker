@@ -1,29 +1,25 @@
 import { Atlas } from "./config";
 import { insertHitDocumentRequest, insertPageDocumentRequest } from "./request";
 import { fakeResponse } from "./response";
-import { Hit, Page } from "./schema";
+import { Hit } from "./schema";
+import { requestToClient, requestToMetadata, requestToPage } from "./transform";
 
-export default function (atlas: Atlas): Promise<Response> {
-    // const page = <Page>{
-    //     path: 'abcccc',
-    //     name: 'defd',
-    // };
-
-    // const request = insertPageDocumentRequest(atlas, page);
+export default async function (req: Request, atlas: Atlas): Promise<Response> {
+    const page = requestToPage(req);
 
     const hit = <Hit>{
-        client: {
-            anonymizedId: 'abc',
-            country: 'def'
-        },
-        metadata: {
-            browser: 'yoo',
-            isMobile: false,
-        },
-        pageId: 'abc',
+        client: requestToClient(req),
+        metadata: requestToMetadata(req),
+        pageId: page.path,
     };
 
-    const request = insertHitDocumentRequest(atlas, hit);
+    const insertPageRequest = insertPageDocumentRequest(atlas, page);
+    const insertHitRequest = insertHitDocumentRequest(atlas, hit);
 
-    return fetch(request, { body: request.body }).finally(() => Promise.resolve(fakeResponse));
+    try {
+        fetch(insertPageRequest, { body: insertPageRequest.body });
+        fetch(insertHitRequest, { body: insertHitRequest.body });
+    } finally {
+        return await Promise.resolve(fakeResponse);
+    }
 }
