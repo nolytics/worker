@@ -9,6 +9,6 @@ export default {
 	): Promise<Response> {
 		const atlas = fromEnv(env);
 
-		return handler(atlas);
+		return handler(request, atlas);
 	},
 };
