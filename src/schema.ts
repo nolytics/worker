@@ -1,24 +1,30 @@
+type ObjectId = string;
+type PageId = string;
+
 export interface Document {
-    _id: string;
+    _id: ObjectId;
 };
 
 export interface Page extends Document {
     name: string;
-    path: string;
-    hits: Array<Hit>;
+    path: PageId;
 }
 
 export interface Hit extends Document {
+    pageId: PageId,
     client: Client;
     metadata: Metadata;
 };
 
-export interface Client extends Document {
+export interface Client {
     anonymizedId: string;
     country: string;
 };
 
-export interface Metadata extends Document {
+export interface Metadata {
     browser: string;
     isMobile: boolean;
 };
+
+export const defaultBrowserUserAgent = 'none';
+export const defaultClientIP = 'none';
