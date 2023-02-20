@@ -1,6 +1,6 @@
 import hash from "./hash";
-import { extractClientIP, extractUserAgent } from "./header";
-import { pageNameQueryParameter, pagePathQueryParameter } from "./param";
+import { extractClientIP, extractUserAgent } from "../http";
+import { pageNameQueryParameter, pagePathQueryParameter } from "../http";
 import { Client, defaultBrowserUserAgent, defaultClientIP, Metadata, Page } from "./schema";
 
 export function requestToPage(req: Request): Page {

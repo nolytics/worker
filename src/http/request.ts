@@ -1,8 +1,8 @@
 import { insertHitDocumentBody, insertPageDocumentBody } from "./body";
-import { Atlas } from "./config";
+import { Atlas } from "../config";
 import { insertOneEndpoint } from "./endpoints";
 import { insertHeaders } from "./header";
-import { Hit, Page } from "./schema";
+import { Hit, Page } from "../data";
 import { composeMongoApiUrl } from "./url";
 
 export function insertPageDocumentRequest(

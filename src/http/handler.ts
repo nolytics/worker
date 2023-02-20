@@ -1,8 +1,8 @@
-import { Atlas } from "./config";
+import { Atlas } from "../config";
 import { insertHitDocumentRequest, insertPageDocumentRequest } from "./request";
 import { fakeResponse } from "./response";
-import { Hit } from "./schema";
-import { requestToClient, requestToMetadata, requestToPage } from "./transform";
+import { Hit } from "../data";
+import { requestToClient, requestToMetadata, requestToPage } from "../data";
 
 export default async function (req: Request, atlas: Atlas): Promise<Response> {
     const page = requestToPage(req);

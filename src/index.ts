@@ -1,5 +1,5 @@
 import { Env, fromEnv } from "./config";
-import handler from "./handler";
+import { handler } from "./http";
 
 export default {
 	async fetch(
