@@ -1,5 +1,5 @@
-import { Atlas } from "./config";
-import { Hit, Page } from "./schema";
+import { Atlas } from "../config";
+import { Hit, Page } from "../data";
 
 const pageCollection = 'page';
 const hitCollection = 'hit';
