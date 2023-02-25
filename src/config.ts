@@ -3,6 +3,11 @@ export interface Env {
     MONGODB_APP_ID: string;
     MONGODB_DATA_SOURCE: string;
     MONGODB_DATABASE: string;
+    HASH_FACTOR: number;
+}
+
+export interface Hash {
+    factor: number;
 }
 
 export interface Atlas {
@@ -12,11 +17,12 @@ export interface Atlas {
     database: string;
 }
 
-export function fromEnv(env: Env): Atlas {
+export function fromEnv(env: Env): Atlas & Hash {
     return {
         apiKey: env.MONGODB_API_KEY,
         appId: env.MONGODB_APP_ID,
         database: env.MONGODB_DATABASE,
         dataSource: env.MONGODB_DATA_SOURCE,
+        factor: env.HASH_FACTOR,
     }
 }
