@@ -11,7 +11,8 @@ export interface Page extends Document {
 }
 
 export interface Hit extends Document {
-    pageId: PageId,
+    pageId: PageId;
+    occurrenceTimeMS: number;
     client: Client;
     metadata: Metadata;
 };
