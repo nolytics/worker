@@ -10,7 +10,7 @@ export function insertPageDocumentRequest(
     page: Page,
 ): Request {
     const method = 'POST';
-    const url = composeMongoApiUrl(atlas.appId, insertOneEndpoint);
+    const url = composeMongoApiUrl(atlas.baseApiHost, atlas.appId, insertOneEndpoint);
     const headers = insertHeaders(atlas.apiKey);
 
     const data = insertPageDocumentBody(page, atlas);
@@ -29,7 +29,7 @@ export function insertHitDocumentRequest(
     hit: Hit,
 ): Request {
     const method = 'POST';
-    const url = composeMongoApiUrl(atlas.appId, insertOneEndpoint);
+    const url = composeMongoApiUrl(atlas.baseApiHost, atlas.appId, insertOneEndpoint);
     const headers = insertHeaders(atlas.apiKey);
 
     const data = insertHitDocumentBody(hit, atlas);
