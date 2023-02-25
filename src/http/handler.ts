@@ -11,6 +11,7 @@ export default async function (req: Request, config: Atlas & Hash): Promise<Resp
         const hit = <Hit>{
             client: await requestToClient(req, config),
             metadata: requestToMetadata(req),
+            occurrenceTimeMS: Date.now(),
             pageId: page.path,
         };
 
