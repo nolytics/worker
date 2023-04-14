@@ -5,6 +5,7 @@ export interface Env {
     MONGODB_DATABASE: string;
     MONGODB_BASE_API_HOST: string;
     HASH_FACTOR: number;
+    IP_INFO_API_TOKEN: string;
 }
 
 export interface Hash {
@@ -19,7 +20,11 @@ export interface Atlas {
     database: string;
 }
 
-export function fromEnv(env: Env): Atlas & Hash {
+export interface IpInfo {
+    apiToken: string;
+}
+
+export function fromEnv(env: Env): Atlas & Hash & IpInfo {
     return {
         apiKey: env.MONGODB_API_KEY,
         appId: env.MONGODB_APP_ID,
@@ -27,5 +32,6 @@ export function fromEnv(env: Env): Atlas & Hash {
         database: env.MONGODB_DATABASE,
         dataSource: env.MONGODB_DATA_SOURCE,
         factor: env.HASH_FACTOR,
+        apiToken: env.IP_INFO_API_TOKEN,
     }
 }
