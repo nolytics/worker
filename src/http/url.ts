@@ -3,7 +3,6 @@ export function composeMongoApiUrl(baseApiHost: string, appId: string, endpoint:
 }
 
 export function composeGeolocationApiUrl(apiToken: string, ip: string): URL {
-    console.log(`https://ipinfo.io/${ip}?token=${apiToken}`)
     return new URL(`https://ipinfo.io/${ip}?token=${apiToken}`);
 }
 

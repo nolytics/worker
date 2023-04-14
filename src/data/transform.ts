@@ -19,9 +19,6 @@ export async function requestToClient(req: Request, config: Hash & IpInfo): Prom
     const anonymizedId = await hash(ip, config.factor);
     const country = await resolveCountry(config, ip);
 
-    console.log(country);
-
-
     return <Client>{
         anonymizedId: anonymizedId,
         country: country,
