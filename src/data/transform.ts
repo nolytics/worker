@@ -2,7 +2,8 @@ import hash from "./hash";
 import { extractClientIP, extractUserAgent } from "../http";
 import { pageNameQueryParameter, pagePathQueryParameter } from "../http";
 import { Client, defaultBrowserUserAgent, defaultClientIP, Metadata, Page } from "./schema";
-import { Hash } from "../config";
+import { Hash, IpInfo } from "../config";
+import { resolveCountry } from "./geo";
 
 export function requestToPage(req: Request): Page {
     const queryParams = new URL(req.url).searchParams;
@@ -13,12 +14,17 @@ export function requestToPage(req: Request): Page {
     };
 }
 
-export async function requestToClient(req: Request, hashc: Hash): Promise<Client> {
+export async function requestToClient(req: Request, config: Hash & IpInfo): Promise<Client> {
     const ip = extractClientIP(req.headers) ?? defaultClientIP;
-    const anonymizedId = await hash(ip, hashc.factor);
+    const anonymizedId = await hash(ip, config.factor);
+    const country = await resolveCountry(config, ip);
+
+    console.log(country);
+
 
     return <Client>{
-        anonymizedId: anonymizedId
+        anonymizedId: anonymizedId,
+        country: country,
     };
 }
 
