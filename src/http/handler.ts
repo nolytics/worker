@@ -1,10 +1,10 @@
-import { Atlas, Hash } from "../config";
+import { Atlas, Hash, IpInfo } from "../config";
 import { insertHitDocumentRequest, insertPageDocumentRequest } from "./request";
 import { fakeResponse } from "./response";
 import { Hit } from "../data";
 import { requestToClient, requestToMetadata, requestToPage } from "../data";
 
-export default async function (req: Request, config: Atlas & Hash): Promise<Response> {
+export default async function (req: Request, config: Atlas & Hash & IpInfo): Promise<Response> {
     const page = requestToPage(req);
 
     try {

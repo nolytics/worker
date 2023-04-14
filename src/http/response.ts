@@ -4,3 +4,7 @@ export const fakeResponse = new Response(null, {
         'Content-Type': 'image/jpeg'
     })
 });
+
+export interface IpInfoApiSuccessResponse {
+    country: string;
+}

@@ -1,9 +1,9 @@
 import { insertHitDocumentBody, insertPageDocumentBody } from "./body";
-import { Atlas } from "../config";
+import { Atlas, IpInfo } from "../config";
 import { insertOneEndpoint } from "./endpoints";
 import { insertHeaders } from "./header";
 import { Hit, Page } from "../data";
-import { composeMongoApiUrl } from "./url";
+import { composeGeolocationApiUrl, composeMongoApiUrl } from "./url";
 
 export function insertPageDocumentRequest(
     atlas: Atlas,
@@ -38,6 +38,20 @@ export function insertHitDocumentRequest(
         headers: headers,
         method: method,
         body: data,
+    }
+
+    return new Request(url, init);
+}
+
+export function fetchGeolocationInformationRequest(
+    ipInfo: IpInfo,
+    ip: string,
+): Request {
+    const method = 'GET';
+    const url = composeGeolocationApiUrl(ipInfo.apiToken, ip);
+
+    const init = <RequestInit>{
+        method: method,
     }
 
     return new Request(url, init);
